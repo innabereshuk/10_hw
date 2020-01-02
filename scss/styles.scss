@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
+
+@import 'normalize';
+@import 'variables';
+@import 'mixins';
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    font-size: 10px;
+}
+
+body {
+    min-height: 100%;
+    background: #f6f6f6;
+    @include font(1.6rem, $title-color, 300, $text-ff, 1.3);
+    letter-spacing: .7px;
+    
+}
+
+a, button {
+    transition: all .4s ease-in;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: linear-gradient(to top, #f3e2dd, #ffcccc);
+}
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: repeat(5,1fr);
+        height: 100vh;
+        background: linear-gradient(to right, #f3e2dd 70%, #f6f6f6 0);
+        background-size: 100px 100%;
+        text-align: center;
+    }
+
+    .section {
+        &__text {
+            grid-column: 4 / 10;
+            grid-row: 1 / 3;
+            display: flex;
+            flex-direction: column;
+            margin: 10rem 1rem 6rem;
+            position: relative;
+        }
+        &__title {
+            @include font(3.4rem, $title-color, 700, $text-ff, 1.3);
+            text-transform: uppercase;
+            margin: 0;
+            margin-bottom: 1.8rem;
+                &::after {
+                    content: "";
+                    display: block;
+                    border-top: 5px solid #000;
+                    opacity: .3;
+                    width: 5rem;
+                    top: 30%;
+                    left: 50%;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                }
+        }
+        &__subtitle {
+            @include font(1.6rem, $title-color, 300, $text-ff, 1.3);
+            margin: 0;
+            margin-top: 3.8rem;
+        }
+    }
+            
+    .persons {
+            grid-column: span 12;
+            grid-row: 3 / 6;
+            display: flex;
+            flex: row wrap;
+        }
+
+    .person {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-right: 3.1rem;
+        width: calc(100% / 4 - 3.1rem);
+        text-align: left;
+        &__image {
+            display: flex;
+            opacity: .9;
+            position: relative;
+            width: 100%;
+            height: 55%;
+            overflow: hidden;
+            padding-top: 100%;
+            margin-bottom: 2rem;
+            & img {
+                @include pCenter;
+                min-width: 100%;
+                 min-height: 100%;
+            }
+       }
+        &__name {
+           &--bold {
+            display: block;
+            @include font(1.8rem, $title-color, 700, $text-ff, 1.1);
+            margin-bottom: 1rem; 
+           }
+           &--sm {
+            display: block;
+            @include font(1.4rem, $title-color, 300, $text-ff, 1.1); 
+           }
+    }
+}
+
+.socials {
+    display: inline-flex;
+    justify-content: space-between;
+    position: absolute;
+    @include pCenter;
+    visibility: hidden;
+}
+
+.social {
+    width: 45px;
+    height: 45px;
+    color: $bg-color;
+    font-weight: 700;
+    background: rgba(107, 188, 207, .7);
+    font-size: 2.4rem;
+    text-align: center;
+    margin: 3px;
+}
+
+.fab {
+    padding: 1rem;
+}
+
+.person:hover .socials,
+.person:focus .socials,
+.person:active .socials {
+    visibility: visible;
+    @include hover;
+   
+}
+
+.person:hover img,
+.person:focus img,
+.person:active img {
+    visibility: hidden;
+}
+
+.person:hover .person__image,
+.person:focus .person__image,
+.person:active .person__image {
+    background: rgba(44, 168, 198, .4);
+    @include hover;
+} 
+    
